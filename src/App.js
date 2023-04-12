@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React from "react";
+import JobComponent from "./components/JobComponent";
+import SearchBar from "./searchbar/SearchBar";
+import JobCard from "./job/JobCard";
+import Job from "./post-job/Job";
+
+const App = () => (
+  <div>
+  <JobComponent /> 
+  <SearchBar />
+  <JobCard />
+  <Job />
+  </div>
+  
+      
+      //<JobCard />
+);
 
 export default App;
