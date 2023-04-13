@@ -11,7 +11,7 @@ const JobCard = (props) => (
                 return(
                     <>
                     <div className="w-full align-middle flex justify-between bg-white shadow-lg m-4 p-4 px-28 py-4 border-2 rounded-md my-5">
-                   {/* 1:15 video */}
+                   
 
                    <div className="rounded-full">
                    <img className=" w-8 h-8 m-5 h-1/2 w-24" src={logo} alt="logo" />
