@@ -74,7 +74,7 @@ export default (props) => {
               <select
                 className="bg-gray-100 py-2 px-4 w-full rounded-lg outline-none"
               >
-                <option value="Remote">Remote</option>
+                <option value="Remote">Remotee</option>
                 <option value="In-office">In-office</option>
               </select>
             </div>
