@@ -7,10 +7,11 @@ import Job from "./post-job/Job";
 
 const App = () => (
   <div>
+  <Job />
   <JobComponent /> 
   <SearchBar />
   <JobCard />
-  <Job />
+  
   </div>
   
       
