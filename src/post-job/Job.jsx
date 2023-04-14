@@ -2,8 +2,23 @@
 
 import React from "react";
 
-export default props => {
-  return (
+
+export default (props) => {
+  
+    const skills = [
+      "Java",
+      'C++',
+      'Python',
+      'ReactJs',
+      'NextJS',
+      'Flutter',
+      'Kotlin',
+      'Angular'
+    ];
+    
+    
+ 
+    return (
     
     <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
       <div className="bg-white w-96 rounded-lg overflow-hidden">
@@ -64,22 +79,25 @@ export default props => {
                 rows="4"
               ></textarea>
             </div>
-            {/* <div>
-           
-            <div className='flex items-center justify-center align-middle'>
-                           <span className="m-1 p-6 text-base border-solid rounded-md cursor-pointer font-semibold bg-black text-white">
-                           {skills}
-                           
-                           </span>
-                        </div>
+          
+            <div className="mt-0.5 w-full">
+            Skills
+            <div className="flex items-center justify-center align-middle overflow-auto" >
+            {skills.map((skill) => (
+              <div key={skill} className="flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black text-white cursor-pointer">
+              {skill}
+              </div>
+              ))}
+              </div>
+              </div>
+
             
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
     
-    </div>
+     
 
   );
 };
-
