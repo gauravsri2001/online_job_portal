@@ -23,8 +23,8 @@ const JobCard = ({companyName, logo, title, skills, postedOn, location, type}) =
           <h3 className="font-semibold text-3xl text-purple-700">{companyName}</h3>
         </div>
         <div className='flex items-center justify-center align-middle'>
-          <span className="m-1 p-6 text-base border-solid rounded-md cursor-pointer font-semibold bg-black text-white">
-            {skills}
+          <span className="m-1 p-4  text-base border-solid rounded-md cursor-pointer font-semibold bg-black text-white">
+            {skills.join(" ")}
           </span>
         </div>
         <div className="flex space-x-8 w-1/3">
