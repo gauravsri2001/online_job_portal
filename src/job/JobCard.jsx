@@ -15,7 +15,7 @@ const JobCard = ({companyName, logo, title, skills, postedOn, location, type}) =
     <div className='items-center shadow-md w-5/6 mx-auto'>
       <div className="w-full align-middle flex justify-between bg-white shadow-lg m-4 p-4 px-28 py-4 border-2 rounded-md my-5">
         <div className="rounded-full">
-          <img className="w-8 h-8 m-5 h-1/2 w-24" src={logo} alt="logo" />
+          <img className="w-8 m-5 h-1/2" src={logo} alt="logo" />
         </div>
         <div className="flex flex-col">
           <h3>{title}</h3>
