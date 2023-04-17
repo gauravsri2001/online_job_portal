@@ -151,25 +151,16 @@ export default (props) => {
     setJobDetails(oldState => ({...oldState, [e.target.name]: e.target.value}))
   };
 
-  // const addRemoveSkill = (skill) => jobDetails.skills.includes(skill)
-  // ? setJobDetails((oldState) => ({
-  //   ...oldState, 
-  //   skills: oldState.skills.filter((s) => s !== skill ),
-  // }))
-  //  : setJobDetails((oldState) => ({
-  //   ...oldState, 
-  //   skills: oldState.skills.concat(skill)}));
-
   const addRemoveSkill = (skill) => jobDetails.skills.includes(skill)
   ? setJobDetails((oldState) => ({
     ...oldState, 
     skills: oldState.skills.filter((s) => s !== skill ),
   }))
-  : setJobDetails((oldState) => ({
+   : setJobDetails((oldState) => ({
     ...oldState, 
-    skills: oldState.skills.concat(skill),
-  }));
+    skills: oldState.skills.concat(skill)}));
 
+ 
 
 
 
@@ -299,7 +290,7 @@ export default (props) => {
               ></textarea>
             </div>
           
-           <div className="mt-0.5 w-full col-span-2">
+           {/* <div className="mt-0.5 w-full col-span-2">
             Skills
             <div onClick={() => addRemoveSkill(skills)} className="flex items-center align-middle overflow-auto" >
             {skills.map((skill) => (
@@ -312,14 +303,29 @@ export default (props) => {
               </div>
             
             </div> 
+          </div>  */}
+
+          <div className="mt-0.5 w-full col-span-2">
+            Skills
+            <div onClick={() => {}} className="flex items-center align-middle overflow-auto" >
+            {skills.map((skill) => (
+              <div key={skill} 
+              onClick={() => addRemoveSkill(skill)}
+              className= 'flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer'
+              >
+      
+              {skill}
+              </div>
+              ))}
+              </div>
+              </div>
+            
+            </div> 
           </div> 
 
-          
-    
-
-<div>
-<div className="flex space-x-40 justify-center">
-<span className='text-xs text-red-600'>*Required Fields</span>
+          <div>
+          <div className="flex space-x-40 justify-center">
+          <span className='text-xs text-red-600'>*Required Fields</span>
           
           <div className="py-3 px-4">
           <button className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer" onClick={toggleForm}>
