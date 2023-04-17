@@ -151,10 +151,25 @@ export default (props) => {
     setJobDetails(oldState => ({...oldState, [e.target.name]: e.target.value}))
   };
 
+  // const addRemoveSkill = (skill) => jobDetails.skills.includes(skill)
+  // ? setJobDetails((oldState) => ({
+  //   ...oldState, 
+  //   skills: oldState.skills.filter((s) => s !== skill ),
+  // }))
+  //  : setJobDetails((oldState) => ({
+  //   ...oldState, 
+  //   skills: oldState.skills.concat(skill)}));
+
   const addRemoveSkill = (skill) => jobDetails.skills.includes(skill)
-  ? setJobDetails(oldState => ({...oldState, skills: oldState.skills.filter(s => s !== skill ),
+  ? setJobDetails((oldState) => ({
+    ...oldState, 
+    skills: oldState.skills.filter((s) => s !== skill ),
   }))
-   : setJobDetails(oldState => ({...oldState, skills: oldState.skills.concat(skill)}))
+  : setJobDetails((oldState) => ({
+    ...oldState, 
+    skills: oldState.skills.concat(skill),
+  }));
+
 
 
 
@@ -284,12 +299,12 @@ export default (props) => {
               ></textarea>
             </div>
           
-          <div className="mt-0.5 w-full col-span-2">
+           <div className="mt-0.5 w-full col-span-2">
             Skills
-            {/* dlciccn */}
             <div onClick={() => addRemoveSkill(skills)} className="flex items-center align-middle overflow-auto" >
             {skills.map((skill) => (
-              <div key={skill} className="flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black text-white cursor-pointer">
+              <div key={skill} className="flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer" >
+      
               {skill}
               </div>
               ))}
@@ -297,7 +312,9 @@ export default (props) => {
               </div>
             
             </div> 
-          </div>
+          </div> 
+
+          
     
 
 <div>
