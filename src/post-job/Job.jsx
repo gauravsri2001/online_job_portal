@@ -311,7 +311,11 @@ export default (props) => {
             {skills.map((skill) => (
               <div key={skill} 
               onClick={() => addRemoveSkill(skill)}
-              className= 'flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer'
+              // className= 'flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer'
+              
+              className={`flex m-2 p-2 text-sm rounded-md font-semibold border border-solid hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer ${
+              jobDetails.skills.includes(skill) ? 'bg-purple-400' : 'bg-black'
+            }`}
               >
       
               {skill}
