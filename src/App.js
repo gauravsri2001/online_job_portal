@@ -3,8 +3,8 @@ import JobComponent from "./components/JobComponent";
 import SearchBar from "./searchbar/SearchBar";
 import JobCard from "./job/JobCard";
 import Job from "./post-job/Job";
-import {firestore} from './firebase/config.js';
-import { collection, getDocs } from "firebase/firestore";
+import {firestore, app} from './firebase/config.js';
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -17,9 +17,18 @@ const App = () => {
       setJobs(prev=>{return [...prev, doc.data()]})
     })
    
-    
   };
+///
+  const postJob = async (jobDetails) => {
+    // await firestore.collection('jobs').add({
+    //   ...jobDetails,
+    //   postedOn: app.firestore.FieldValue.serverTimestamp()
+    // })
 
+    const collectionRef = collection(firestore, 'jobs');
+    const snapshot = await addDoc(collectionRef, jobDetails);
+  }
+////
   useEffect(() => {
     fetchJobs();
   }, [])
@@ -27,13 +36,17 @@ const App = () => {
   return (
     <div>
       <JobComponent /> 
+      {/* <Job /> */}
+
+      <Job postJob={postJob}/>
+      
       <SearchBar />
       <div>
         {jobs.map((job, id) => (
           <JobCard key={id} {...job} />
         ))}
       </div>
-      <Job />
+     
     </div>
   );
 };

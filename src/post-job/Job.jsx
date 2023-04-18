@@ -8,7 +8,7 @@ export default (props) => {
     link: "",
     location: "",
     logo: "",
-    postedOn: "",
+   // postedOn: "",
     skills: [],
     title: "",
     type: "",
@@ -28,6 +28,17 @@ export default (props) => {
    : setJobDetails((oldState) => ({
     ...oldState, 
     skills: oldState.skills.concat(skill)}));
+
+
+    // const handleSubmit = async () => {
+    //   await props.postJob(jobDetails);
+    // }
+    const handleSubmit = async () => {
+      await props.postJob(jobDetails);
+      // console.log("Job: ",jobDetails);
+    };
+    
+
 
 
   const [showForm, setShowFrom] = useState(true);
@@ -183,9 +194,14 @@ export default (props) => {
           <div className="flex space-x-40 justify-center">
           <span className='text-xs text-red-600'>*Required Fields</span>
           
-          <div className="py-3 px-4">
-          <button className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer" onClick={toggleForm}>
-          Post a Job
+          
+          <div className="py-3 px-4" >
+          <button
+          onClick = {handleSubmit}
+           className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer" 
+           //onClick='toggleForm; handleSubmit;'
+           >
+          Post Job
           </button>
           </div>
           

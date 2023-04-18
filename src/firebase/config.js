@@ -20,6 +20,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
+
 const firebaseConfig = {
   // Your project's configuration object goes here
   apiKey: "AIzaSyCu8TYXnGMvhURMtsLKtUb4iauLeMpWPXA",
@@ -34,4 +35,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Get a Firestore instance
-export const firestore = getFirestore(app);
+const firestore = getFirestore(app);
+
+export { app, firestore };
