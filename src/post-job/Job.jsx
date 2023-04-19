@@ -1,4 +1,4 @@
-//import { CircularProgress } from "@mui/material";
+
 import React, { useState, useRef } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import {firestore} from '../firebase/config'
@@ -35,16 +35,29 @@ const Job = ({showForm, setShowForm}) => {
     skills: oldState.skills.concat(skill)}));
 
 
-    const handleSubmit = async () => {
-      setLoading(true);
-      const collectionRef = collection(firestore, 'jobs');
-      const snapshot = await addDoc(collectionRef, jobDetails);
-      setLoading(false);
-      toggleForm();
-    };
+    // const handleSubmit = async () => {
+    //   setLoading(true);
+    //   const collectionRef = collection(firestore, 'jobs');
+    //   const snapshot = await addDoc(collectionRef, jobDetails);
+    //   setLoading(false);
+    //   toggleForm();
+    // };
   
-
-  // const [showForm, setShowFrom] = useState(false);
+    const handleSubmit = async () => {
+      try {
+        setLoading(true);
+        const collectionRef = collection(firestore, 'jobs');
+        const snapshot = await addDoc(collectionRef, jobDetails);
+        setLoading(false);
+        toggleForm();
+      } catch (error) {
+        // Handle error here
+        console.error('Error submitting job details:', error);
+        setLoading(false);
+      }
+    };
+    
+  
     const skills = [
       "Java",
       'C++',
