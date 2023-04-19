@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import JobComponent from "./components/JobComponent";
 import SearchBar from "./searchbar/SearchBar";
 import JobCard from "./job/JobCard";
-import Job from "./post-job/Job";
-import {firestore, app} from './firebase/config.js';
+
+import {firestore} from './firebase/config.js';
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
+  const [ newJobModel, setNewJobModel] = useState(false)
 
   const fetchJobs = async () => {
     const collectionRef = collection(firestore, 'Jobs');
@@ -18,28 +19,20 @@ const App = () => {
     })
    
   };
-///
-  const postJob = async (jobDetails) => {
-    // await firestore.collection('jobs').add({
-    //   ...jobDetails,
-    //   postedOn: app.firestore.FieldValue.serverTimestamp()
-    // })
 
-    const collectionRef = collection(firestore, 'jobs');
-    const snapshot = await addDoc(collectionRef, jobDetails);
-  }
-////
+  // const postJob = async (jobDetails) => {
+    
+  //   const collectionRef = collection(firestore, 'jobs');
+  //   const snapshot = await addDoc(collectionRef, jobDetails);
+  // }
+
   useEffect(() => {
     fetchJobs();
   }, [])
   console.log(jobs)
   return (
     <div>
-      <JobComponent /> 
-      {/* <Job /> */}
-
-      <Job postJob={postJob}/>
-      
+      <JobComponent openNewJobModel={() => setNewJobModel(true)} />       
       <SearchBar />
       <div>
         {jobs.map((job, id) => (

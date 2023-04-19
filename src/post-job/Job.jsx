@@ -1,14 +1,19 @@
-
-import React, { useState } from "react";
-export default (props) => {
+//import { CircularProgress } from "@mui/material";
+import React, { useState, useRef } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import {firestore} from '../firebase/config'
+const Job = ({showForm, setShowForm}) => {
   
+  const [loading, setLoading] = useState(false)
+
+  const cardRef = useRef();
+
   const [jobDetails, setJobDetails] = useState({
     companyName : "",
     companyUrl: "",
     link: "",
     location: "",
     logo: "",
-   // postedOn: "",
     skills: [],
     title: "",
     type: "",
@@ -30,18 +35,16 @@ export default (props) => {
     skills: oldState.skills.concat(skill)}));
 
 
-    // const handleSubmit = async () => {
-    //   await props.postJob(jobDetails);
-    // }
     const handleSubmit = async () => {
-      await props.postJob(jobDetails);
-      // console.log("Job: ",jobDetails);
+      setLoading(true);
+      const collectionRef = collection(firestore, 'jobs');
+      const snapshot = await addDoc(collectionRef, jobDetails);
+      setLoading(false);
+      toggleForm();
     };
-    
+  
 
-
-
-  const [showForm, setShowFrom] = useState(true);
+  // const [showForm, setShowFrom] = useState(false);
     const skills = [
       "Java",
       'C++',
@@ -54,18 +57,14 @@ export default (props) => {
     ];
 
     const toggleForm = () => {
-      setShowFrom(!showForm);
+      setShowForm(!showForm);
     };
-
-    console.log(jobDetails);
     return (
     <>
-    {showForm && (
-      <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
+      <div ref={cardRef}  className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
       <div className="bg-white w-96 rounded-lg overflow-hidden">
         <div className="bg-gray-100 flex py-4 px-6 font-bold text-xl gap-56">
           Post Job
-          
           <svg
           xmlns="http://www.w3.org/2000/svg" 
           fill="none" 
@@ -76,8 +75,6 @@ export default (props) => {
           onClick={toggleForm}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
-          
-          
 
         </div>
         <div className="p-6">
@@ -174,8 +171,7 @@ export default (props) => {
             {skills.map((skill) => (
               <div key={skill} 
               onClick={() => addRemoveSkill(skill)}
-              // className= 'flex m-2 p-2 text-sm rounded-md font-semibold border border-solid bg-black hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer'
-              
+
               className={`flex m-2 p-2 text-sm rounded-md font-semibold border border-solid hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer ${
               jobDetails.skills.includes(skill) ? 'bg-purple-400' : 'bg-black'
             }`}
@@ -198,10 +194,12 @@ export default (props) => {
           <div className="py-3 px-4" >
           <button
           onClick = {handleSubmit}
-           className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer" 
-           //onClick='toggleForm; handleSubmit;'
-           >
+          disabled = {loading}
+           className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer"
+          >
+          
           Post Job
+         
           </button>
           </div>
           
@@ -210,9 +208,10 @@ export default (props) => {
 
         </div>
       </div>
-    )}
+
     </>
     
   );
 };
  
+export default Job;
