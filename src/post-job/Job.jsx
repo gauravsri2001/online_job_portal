@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import {firestore} from '../firebase/config'
@@ -34,14 +33,6 @@ const Job = ({showForm, setShowForm}) => {
     ...oldState, 
     skills: oldState.skills.concat(skill)}));
 
-
-    // const handleSubmit = async () => {
-    //   setLoading(true);
-    //   const collectionRef = collection(firestore, 'jobs');
-    //   const snapshot = await addDoc(collectionRef, jobDetails);
-    //   setLoading(false);
-    //   toggleForm();
-    // };
   
     const handleSubmit = async () => {
       try {
@@ -51,7 +42,7 @@ const Job = ({showForm, setShowForm}) => {
         setLoading(false);
         toggleForm();
       } catch (error) {
-        // Handle error here
+        
         console.error('Error submitting job details:', error);
         setLoading(false);
       }
