@@ -1,7 +1,39 @@
-import React, { useState, useRef } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import React, { useState, useRef, useEffect } from "react";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import {firestore} from '../firebase/config'
 const Job = ({showForm, setShowForm}) => {
+  
+
+//   const JobList = () => {
+//     const [jobs, setJobs] = useState([]);
+
+// //  useEffect(() => {
+// //     const fetchJobs = async () => {
+// //       const querySnapshot = await getDocs(collection(firestore, "jobs"));
+// //       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+// //       setJobs(data);
+// //     };
+// //     fetchJobs();
+// //   }, []);
+    
+
+//   }
+
+  const JobList = () => {
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+      const fetchJobs = async () => {
+        const querySnapshot = await getDocs(collection(firestore, "jobs"));
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setJobs(data);
+      };
+      fetchJobs();
+    }, []);
+  }
+
+ 
+
   
   const [loading, setLoading] = useState(false)
 
@@ -40,6 +72,11 @@ const Job = ({showForm, setShowForm}) => {
         const collectionRef = collection(firestore, 'jobs');
         const snapshot = await addDoc(collectionRef, jobDetails);
         setLoading(false);
+        //
+        const newJobDoc = {id: snapshot.id, ...jobDetails};
+
+      setJobs(preJobs => [newJobDoc, ...preJobs]);
+        //
         toggleForm();
       } catch (error) {
         
@@ -201,9 +238,7 @@ const Job = ({showForm, setShowForm}) => {
           disabled = {loading}
            className="bg-purple-700 py-3 px-3 rounded-2xl hover:text-slate-700 hover:bg-purple-400 text-white cursor-pointer"
           >
-          
           Post Job
-         
           </button>
           </div>
           
