@@ -32,8 +32,6 @@ const Job = ({showForm, setShowForm}) => {
     }, []);
   }
 
- 
-
   
   const [loading, setLoading] = useState(false)
 
