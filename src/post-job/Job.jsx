@@ -31,7 +31,6 @@ const Job = ({showForm, setShowForm}) => {
       fetchJobs();
     }, []);
   }
-
   
   const [loading, setLoading] = useState(false)
 
