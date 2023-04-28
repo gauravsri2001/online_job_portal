@@ -70,9 +70,9 @@ const Job = ({showForm, setShowForm}) => {
         const snapshot = await addDoc(collectionRef, jobDetails);
         setLoading(false);
         //
-        const newJobDoc = {id: snapshot.id, ...jobDetails};
+      //   const newJobDoc = {id: snapshot.id, ...jobDetails};
 
-      setJobs(preJobs => [newJobDoc, ...preJobs]);
+      // setJobs(preJobs => [newJobDoc, ...preJobs]);
         //
         toggleForm();
       } catch (error) {
