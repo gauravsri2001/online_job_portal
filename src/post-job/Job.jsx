@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import {firestore} from '../firebase/config'
-const Job = ({showForm, setShowForm}) => {
+const Job = ({showForm, setShowForm, setJobList}) => {
   
 
 //   const JobList = () => {
@@ -19,18 +19,18 @@ const Job = ({showForm, setShowForm}) => {
 
 //   }
 
-  const JobList = () => {
-    const [jobs, setJobs] = useState([]);
+  // const JobList = () => {
+  //   const [jobs, setJobs] = useState([]);
 
-    useEffect(() => {
-      const fetchJobs = async () => {
-        const querySnapshot = await getDocs(collection(firestore, "jobs"));
-        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setJobs(data);
-      };
-      fetchJobs();
-    }, []);
-  }
+  //   useEffect(() => {
+  //     const fetchJobs = async () => {
+  //       const querySnapshot = await getDocs(collection(firestore, "jobs"));
+  //       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  //       setJobs(data);
+  //     };
+  //     fetchJobs();
+  //   }, []);
+  // }
   
   const [loading, setLoading] = useState(false)
 
@@ -63,11 +63,14 @@ const Job = ({showForm, setShowForm}) => {
     skills: oldState.skills.concat(skill)}));
 
   
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
       try {
         setLoading(true);
         const collectionRef = collection(firestore, 'jobs');
         const snapshot = await addDoc(collectionRef, jobDetails);
+        const data = await getDocs(collectionRef);
+        setJobList(data.docs.map(doc=>({...doc.data(), id: doc.id})))
         setLoading(false);
         //
       //   const newJobDoc = {id: snapshot.id, ...jobDetails};
@@ -81,7 +84,6 @@ const Job = ({showForm, setShowForm}) => {
         setLoading(false);
       }
     };
-    
   
     const skills = [
       "Java",
