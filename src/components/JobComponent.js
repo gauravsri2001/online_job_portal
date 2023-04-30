@@ -41,7 +41,7 @@ const JobComponent = () => {
   return (
     <>
       <div className="bg-black text-white flex justify-between items-center px-28 py-5">
-        <div className="text-3xl font-semibold">Job Listing</div>
+        <div className="text-3xl font-semibold">JobCrate</div>
         <div className="my-4">
           <button
             onClick={handleClick}

@@ -5,6 +5,7 @@ import JobCard from "./job/JobCard";
 
 import {firestore} from './firebase/config.js';
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import Navbar from "./Landing Page/landing";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -32,13 +33,14 @@ const App = () => {
   console.log(jobs)
   return (
     <div>
-      <JobComponent openNewJobModel={() => setNewJobModel(true)} />       
+    <Navbar />
+      {/* <JobComponent openNewJobModel={() => setNewJobModel(true)} />       
       <SearchBar />
       <div>
         {jobs.map((job, id) => (
           <JobCard key={id} {...job} />
         ))}
-      </div>
+      </div> */}
      
     </div>
   );
